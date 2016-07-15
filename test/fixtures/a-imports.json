@@ -1,0 +1,19 @@
+[
+  {
+    "/fixtures/a.scss": [
+      {
+        "/fixtures/_partial.scss": []
+      },
+      {
+        "/fixtures/hello/b.scss": [
+          {
+            "/fixtures/hello/world/c.scss": []
+          },
+          {
+            "/fixtures/_partial.scss": []
+          }
+        ]
+      }
+    ]
+  }
+]
