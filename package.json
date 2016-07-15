@@ -1,12 +1,12 @@
 {
   "name": "scss-inline-imports",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A library to inline SCSS @imports statements",
   "main": "index.js",
   "license": "SEE LICENSE IN README",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/salesforce-ux/scss-inline-imports"
+    "type": "git",
+    "url": "https://github.com/salesforce-ux/scss-inline-imports"
   },
   "bugs": {
     "url": "https://github.com/salesforce-ux/scss-inline-imports/issues"
