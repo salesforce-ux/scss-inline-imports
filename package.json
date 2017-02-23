@@ -11,6 +11,7 @@
   "bugs": {
     "url": "https://github.com/salesforce-ux/scss-inline-imports/issues"
   },
+  "homepage": "https://github.com/salesforce-ux/scss-inline-imports",
   "engines": {
     "node": ">=6.0.0"
   },
