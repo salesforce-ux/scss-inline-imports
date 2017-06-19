@@ -56,7 +56,7 @@ let inlineImports = (entry, options) => {
           if (foundSearchPath) {
             let comments = options.comments ? [
               '================================================',
-              `// ${searchPath}`,
+              `// ${foundSearchPath}`,
               '================================================'
             ] : []
             let nextImports = []
