@@ -13,6 +13,7 @@ let parseImports = (chunk) => _(chunk)
   .map(_.trim)
   .map(c => c.match(/('|")(.+?)('|")/))
   .compact()
+  .filter(c => /^("|')/.test(c.input))
   .map(match => match[2])
   .value()
 
@@ -45,20 +46,24 @@ let inlineImports = (entry, options) => {
       parseImports(chunk)
         .map(importPath => {
           let searchPaths = getSearchPaths(entry, importPath, options.includePaths)
+          let foundSearchPath = false
           for (let searchPath of searchPaths) {
             try {
               fs.accessSync(searchPath)
-              let comments = options.comments ? [
-                '================================================',
-                `// ${searchPath}`,
-                '================================================'
-              ] : []
-              let nextImports = []
-              imports.push({ [searchPath]: nextImports })
-              return comments
-                .concat(walk(searchPath, nextImports))
-                .join('\n')
+              foundSearchPath = searchPath
             } catch (e) {}
+          }
+          if (foundSearchPath) {
+            let comments = options.comments ? [
+              '================================================',
+              `// ${searchPath}`,
+              '================================================'
+            ] : []
+            let nextImports = []
+            imports.push({ [foundSearchPath]: nextImports })
+            return comments
+              .concat(walk(foundSearchPath, nextImports))
+              .join('\n')
           }
           throw new Error(`@import not found: "${importPath}" in "${entry}"`)
         })
