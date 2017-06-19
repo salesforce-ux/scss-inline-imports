@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inlines imports 1`] = `
+".my-partial {}
+
+
+.a {}
+
+.world-c {}
+
+.my-partial {}
+
+
+.world-b {}
+
+"
+`;
+
+exports[`inlines imports with includePaths 1`] = `
+".my-partial {}
+
+.my-module {}
+
+"
+`;
+
+exports[`returns the imports 1`] = `
+Array [
+  Object {
+    "/fixtures/a.scss": Array [
+      Object {
+        "/fixtures/_partial.scss": Array [],
+      },
+      Object {
+        "/fixtures/hello/hello-b.scss": Array [
+          Object {
+            "/fixtures/hello/world/world-c.scss": Array [],
+          },
+          Object {
+            "/fixtures/_partial.scss": Array [],
+          },
+        ],
+      },
+    ],
+  },
+]
+`;
+
+exports[`returns the importsFlattened 1`] = `
+Array [
+  "/fixtures/_partial.scss",
+  "/fixtures/hello/world/world-c.scss",
+  "/fixtures/_partial.scss",
+  "/fixtures/hello/hello-b.scss",
+  "/fixtures/a.scss",
+]
+`;
