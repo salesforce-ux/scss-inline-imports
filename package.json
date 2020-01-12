@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "jest": "24.9.0",
-    "standard": "^8.6.0"
+    "standard": "^14.3.1"
   },
   "standard": {
     "ignore": [

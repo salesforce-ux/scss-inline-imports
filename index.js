@@ -7,7 +7,7 @@ const path = require('path')
 
 const IMPORT_PATTERN = /(@import)([\s\S]*?);/g
 
-let parseImports = (chunk) => _(chunk)
+const parseImports = (chunk) => _(chunk)
   .split(',')
   .flatMap(c => c.split('\n'))
   .map(_.trim)
@@ -17,49 +17,49 @@ let parseImports = (chunk) => _(chunk)
   .map(match => match[2])
   .value()
 
-let getSearchPaths = (entry, importPath, includePaths) => {
-  let ext = /\.scss$/.test(importPath) ? '' : '.scss'
-  let searchDirectories = [path.dirname(entry)].concat(includePaths)
+const getSearchPaths = (entry, importPath, includePaths) => {
+  const ext = /\.scss$/.test(importPath) ? '' : '.scss'
+  const searchDirectories = [path.dirname(entry)].concat(includePaths)
   return _(searchDirectories).flatMap(directory => {
     return ['', '_'].map(prefix => {
-      let parsed = path.parse(path.join(directory, `${importPath}${ext}`))
+      const parsed = path.parse(path.join(directory, `${importPath}${ext}`))
       parsed.base = `${prefix}${parsed.base}`
       return path.format(parsed)
     })
   }).value()
 }
 
-let flattenImports = (imports) => _.flatMapDeep(imports, imports => {
+const flattenImports = (imports) => _.flatMapDeep(imports, imports => {
   return _.map(imports, (imports, key) => {
     return flattenImports(imports).concat(key)
   })
 })
 
-let inlineImports = (entry, options) => {
+const inlineImports = (entry, options) => {
   options = _.defaults({}, options, {
     comments: false,
     includePaths: []
   })
 
-  let replaceImports = (entry, imports) =>
+  const replaceImports = (entry, imports) =>
     (match, keyword, chunk) =>
       parseImports(chunk)
         .map(importPath => {
-          let searchPaths = getSearchPaths(entry, importPath, options.includePaths)
+          const searchPaths = getSearchPaths(entry, importPath, options.includePaths)
           let foundSearchPath = false
-          for (let searchPath of searchPaths) {
+          for (const searchPath of searchPaths) {
             try {
               fs.accessSync(searchPath)
               foundSearchPath = searchPath
             } catch (e) {}
           }
           if (foundSearchPath) {
-            let comments = options.comments ? [
+            const comments = options.comments ? [
               '================================================',
               `// ${foundSearchPath}`,
               '================================================'
             ] : []
-            let nextImports = []
+            const nextImports = []
             imports.push({ [foundSearchPath]: nextImports })
             return comments
               .concat(walk(foundSearchPath, nextImports))
@@ -69,15 +69,15 @@ let inlineImports = (entry, options) => {
         })
         .join('\n')
 
-  let walk = (entry, imports) => fs
+  const walk = (entry, imports) => fs
     .readFileSync(entry, 'utf-8')
     .replace(IMPORT_PATTERN, replaceImports(entry, imports))
 
-  let imports = [{
+  const imports = [{
     [entry]: []
   }]
 
-  let scss = walk(entry, imports[0][entry])
+  const scss = walk(entry, imports[0][entry])
 
   return {
     scss,
