@@ -1,4 +1,4 @@
-# SCSS Inline Imports [![Greenkeeper badge](https://badges.greenkeeper.io/salesforce-ux/scss-inline-imports.svg)](https://greenkeeper.io/) [![Build Status][travis-image]][travis-url] [![NPM version][npm-image]][npm-url]
+# SCSS Inline Imports [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=salesforce-ux/scss-inline-imports)](https://dependabot.com) [![Build Status][travis-image]][travis-url] [![NPM version][npm-image]][npm-url]
 
 ## Getting Started
 
