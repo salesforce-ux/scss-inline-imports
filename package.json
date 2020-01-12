@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/salesforce-ux/scss-inline-imports",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "test": "jest",
@@ -23,7 +23,7 @@
     "lodash": "4.17.15"
   },
   "devDependencies": {
-    "jest": "20.0.4",
+    "jest": "24.9.0",
     "standard": "^8.6.0"
   },
   "standard": {
