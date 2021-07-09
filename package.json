@@ -19,16 +19,13 @@
     "test": "jest",
     "lint": "standard"
   },
-  "dependencies": {
-    "lodash": "4.17.15"
-  },
-  "devDependencies": {
-    "jest": "24.9.0",
-    "standard": "14.3.1"
-  },
   "standard": {
     "ignore": [
       "node_modules/**/*"
     ]
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "standard": "^14.3.1"
   }
 }
